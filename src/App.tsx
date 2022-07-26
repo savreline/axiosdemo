@@ -5,11 +5,12 @@ import { useForm } from "react-hook-form";
 const App = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data: any) => {
-    console.log(data);
+    var formData = new FormData();
+    formData.append("data", data);
     axios
-      .post("/api/sample", data, {
+      .post("/api/sample", formData, {
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "multipart/form-data",
         },
       })
       .then((uploadResponse: AxiosResponse | Promise<AxiosResponse>) =>
